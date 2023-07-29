@@ -30,13 +30,7 @@ export async function POST(request: NextRequest) {
       // Return a success response
       return NextResponse.json({ message: "User created successfully" });
     } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
-        // Unique constraint violation (i.e., email already exists)
-        return NextResponse.json({ error: "Email already exists." }, { status: 409 });
-      } else {
-        // All other errors
-        console.error(`An unexpected error occurred: ${String(error)}`);
-        return NextResponse.json({ error: "An unexpected error occurred." }, { status: 500 });
-      }
+      console.log(error)
+      return NextResponse.json({ message:  "An unexpected error occurred.", error }, { status: 500 });
     }
   }
