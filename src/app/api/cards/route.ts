@@ -7,7 +7,7 @@ import { prisma } from '@/components/libs/prisma'
 export async function GET(request: NextRequest) {
     const token = request.cookies.get('token');
     if (!token) {
-        throw new Error('token is not defined');
+        return NextResponse.json({message: "token is not defined"}, {status: 401})
     }
     const decodedToken = getTokenData(token.value);
     if(!decodedToken) {
