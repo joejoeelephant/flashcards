@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
     const {word} = await request.json();
     const token = request.cookies.get('token');
     if (!token) {
-      throw new Error('token is not defined');
+      return NextResponse.json({message: "token is not defined"}, {status: 401})
     }
     const decodedToken = getTokenData(token.value);
     if(!decodedToken) {
