@@ -41,11 +41,9 @@ export async function POST(request: NextRequest){
     cookies().set('token', token, {
         httpOnly: true,
         path: '/',
-        secure: process.env.NODE_ENV === 'production',  // Secure in production
-        sameSite: 'lax',
+        // secure: process.env.NODE_ENV === 'production',  // Secure in production
+        // sameSite: 'lax',
     });
-
-    await prisma.$disconnect();
 
     return NextResponse.json({ token, message: 'logged in' }, {status: 200})
 }
