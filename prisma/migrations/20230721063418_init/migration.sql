@@ -1,0 +1,33 @@
+-- CreateTable
+CREATE TABLE "User" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "email" TEXT NOT NULL,
+    "password" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "FlashCard" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "word" TEXT NOT NULL,
+    "definition" TEXT NOT NULL,
+    "example" TEXT,
+    "lastReviewed" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "score" INTEGER NOT NULL DEFAULT 0,
+    "failure" INTEGER NOT NULL DEFAULT 0,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    "userId" INTEGER NOT NULL,
+    CONSTRAINT "FlashCard_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "UserSession" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "expiresAt" DATETIME NOT NULL,
+    "userId" INTEGER NOT NULL,
+    CONSTRAINT "UserSession_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
