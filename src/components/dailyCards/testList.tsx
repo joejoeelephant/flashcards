@@ -48,8 +48,8 @@ export default function TestList(props: Props) {
 
     const checkAnswer = async () => {
         if(updating) return;
-        const answer = answerRef.current?.value;
-        const word = currentWord.word;
+        const answer = answerRef.current?.value.trim().toLowerCase();
+        const word = currentWord.word.toLowerCase();
         setAnswerState(answer == word)
         setUpdating(true)
         const score = (answer == word)? 1: 0
