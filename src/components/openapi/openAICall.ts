@@ -57,11 +57,12 @@ export const chatCompletion = async (word: string) => {
     const env = process.env.NODE_ENV;
     const sysPrompt = `
         You are a helpful assistant that provides word definitions,
+        word pronunciation,
         the etymology of the word,
         examples, and other related information. 
-        I need you return the data in json style for example {word:string,definitions:string[],examples:string[],etymology:string}.
+        I need you return the data in json style for example {word:string, pronunciation: string, definitions:string[],examples:string[],etymology:string}.
     `
-    const userPrompt = `Can you provide the information of the word ${word}?`
+    const userPrompt = `Can you provide the information of the word "${word}?"`
 
     if(env !== 'development') {
         return await productionChat(sysPrompt, userPrompt)

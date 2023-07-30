@@ -23,13 +23,6 @@ const findWord = async (word: string) => {
       }
 }
 
-interface CardProps {
-    id: number;
-    definition: string;
-    example: string;
-    etymology: string;
-  }
-
 export default async function page({ params }: { params: { word: string } }) {
     authCheck()
     const {word} = params;

@@ -28,8 +28,14 @@ export default function Card(props: CardProps) {
         <div className='p-4 bg-white shadow-md shadow-slate-300 rounded-md'>
             <div>
                 <div className='w-full mt-2 py-4 text-2xl font-bold text-center border-b-2 border-slate-500'>
-                    {wordData?.word}
+                    <div>
+                        {wordData?.word}
+                    </div>
+                    <div className='w-full py-4 font-bold italic text-xs mt-1'>
+                        {wordData?.pronunciation}
+                    </div>
                 </div>
+                
             </div>
             <div>
                 <div className='mt-2 border-b-2 border-slate-500 pb-2'>

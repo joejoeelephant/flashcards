@@ -22,11 +22,13 @@ export async function POST(request: NextRequest) {
     const wordData = JSON.parse(content)
     const {definitions, examples, etymology} = wordData
     const {id} = decodedToken;
+
     try {
         // Create a new user in the database
         const newFlashCard = await prisma.flashCard.create({
             data: {
                 word: wordData.word,
+                pronunciation: wordData.pronunciation,
                 definition: JSON.stringify(definitions),
                 example: JSON.stringify(examples),
                 etymology: JSON.stringify(etymology),
@@ -36,7 +38,7 @@ export async function POST(request: NextRequest) {
             },
         });
     
-        console.log("User created:", newFlashCard);
+        // console.log("User created:", newFlashCard);
         // Return a success response
         return NextResponse.json({ message: "newFlashCard created successfully", success: 'ok', word: wordData.word }, {status: 200});
       } catch (error) {
