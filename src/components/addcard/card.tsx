@@ -22,7 +22,7 @@ export default function Card() {
         }).then(res => {
             console.log(res)
             setLoading(false)
-            // router.push('/card/' + res.word)
+            router.push('/card/' + res.word)
         }).catch(error => {
             setLoading(false)
             if(error.message === 'FlashCard already exists.') {
