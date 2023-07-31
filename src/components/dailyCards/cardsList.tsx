@@ -48,9 +48,12 @@ export default function CardsList() {
         return (
             <div className='min-h-screen p-3 bg-slate-100 flex flex-col justify-center'>
                 <div className='p-4 bg-white shadow-md shadow-slate-300 rounded-md'>
-                    <div>
-                        <div className='w-full mt-2 py-4 text-2xl font-bold text-center border-b-2 border-slate-500'>
+                    <div className='w-full mt-2 py-4 text-2xl font-bold text-center border-b-2 border-slate-500'>
+                        <div>
                             {currentWord?.word}
+                        </div>
+                        <div className='w-full py-4 font-bold italic text-xs mt-1'>
+                            {currentWord?.pronunciation}
                         </div>
                     </div>
                     <div>
