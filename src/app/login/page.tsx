@@ -1,30 +1,37 @@
 'use client'
 import React from 'react'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import customFetch from '@/components/utils/customFetch';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 export default function LoginPage() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const [loading,setLoading] = useState(false)
   const router = useRouter()
 
-  const submit = (event: React.FormEvent) => {
+  const submit = async (event: React.FormEvent) => {
+    if(loading) return;
     event.preventDefault();
+    setLoading(true)
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
-    customFetch('/api/login', {
-      method: 'POST',
-      body: {
-        email,
-        password
-      }
-    }).then(response => {
+    try {
+      const response = await customFetch('/api/login', {
+        method: 'POST',
+        body: {
+          email,
+          password
+        }
+      })
+      setLoading(false)
       console.log(response);
       router.push('/cards')
-    }).catch(err => {
-      console.log(err)
-    })
+    } catch (error: any) {
+      setLoading(false)
+      toast.error(error.message)      
+    }
   }
 
 
@@ -50,13 +57,13 @@ export default function LoginPage() {
               <input
                 ref={passwordRef}
                 type="password" 
-                required 
+                required
                 className='border-2 border-slate-600 rounded-md mt-2 w-full p-2'
               />
             </div>
             <div className='mt-4'>
-              <button type="submit" className='w-full p-2 bg-blue-400 active:blue-500 text-white text-center rounded-md'>
-                Login
+              <button type="submit" className={'w-full p-2 '+ (!loading ? 'bg-blue-400 active:bg-blue-500': 'bg-slate-400 active:bg-slate-500') +' text-white text-center rounded-md'}>
+                {loading ? 'Loading...' : 'Login'}
               </button>
             </div>
           </form>
