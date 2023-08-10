@@ -38,6 +38,7 @@ jobs:
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         key: ${{ secrets.DEPLOY_KEY }}
+        port: ${{ secrets.REMOTE_PORT }}
         script: |
           sudo docker pull joejoeelephant/flashcard:latest
           sudo docker stop flash-card-container || true
