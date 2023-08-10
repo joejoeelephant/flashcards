@@ -25,9 +25,9 @@ export default function LoginPage() {
           password
         }
       })
-      setLoading(false)
       console.log(response);
       router.push('/cards')
+      setLoading(false)
     } catch (error: any) {
       setLoading(false)
       toast.error(error.message)      
