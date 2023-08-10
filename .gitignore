@@ -37,6 +37,3 @@ next-env.d.ts
 #proxy
 .npmrc
 .env
-
-#docker
-Dockerfile
