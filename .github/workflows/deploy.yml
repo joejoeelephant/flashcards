@@ -40,7 +40,7 @@ jobs:
         key: ${{ secrets.DEPLOY_KEY }}
         port: ${{ secrets.REMOTE_PORT }}
         script: |
-          sudo docker pull joejoeelephant/flashcard:latest
-          sudo docker stop flash-card-container || true
-          sudo docker rm flash-card-container || true
-          sudo docker run -d -v ~/flashCard/flashcards/.env:/usr/src/app/.env --name flash-card-container -p ${{ secrets.REMOTE_PROXY_PORT }}:3000 joejoeelephant/flashcard:latest
+          docker pull joejoeelephant/flashcard:latest
+          docker stop flash-card-container || true
+          docker rm flash-card-container || true
+          docker run -d -v ~/flashCard/flashcards/.env:/usr/src/app/.env --name flash-card-container -p ${{ secrets.REMOTE_PROXY_PORT }}:3000 joejoeelephant/flashcard:latest
